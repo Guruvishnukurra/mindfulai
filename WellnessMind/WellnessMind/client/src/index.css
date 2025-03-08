@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gradient-start: 267 34% 46%;
+    --gradient-end: 237 40% 28%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-gradient-to-br from-indigo-900 via-purple-800 to-violet-900 min-h-screen text-white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+
+  .glass-card-hover {
+    @apply transition-all duration-500 hover:bg-white/15 hover:scale-[1.02] hover:shadow-2xl hover:border-white/30;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-pink-200 to-cyan-200 animate-gradient;
+  }
+
+  .glow {
+    @apply relative;
+  }
+
+  .glow::after {
+    @apply content-[''] absolute inset-0 -z-10 bg-gradient-to-r from-purple-500 to-pink-500 opacity-75 blur-xl transition-all duration-1000;
+  }
+
+  .glow:hover::after {
+    @apply opacity-100;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 3s ease infinite;
+  background-size: 200% 200%;
+}
